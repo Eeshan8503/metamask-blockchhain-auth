@@ -1,0 +1,11 @@
+1. why is emit statement not in addUser
+2. await storage.addUser(
+            user,
+            {from:accounts[1]}
+        );   
+        
+        Explain {from: accounts[1]}
+        
+3. When we call getUser from store.js through accoount[2], why does it not return an error? 
+
+ 

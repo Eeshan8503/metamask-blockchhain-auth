@@ -10,17 +10,15 @@ contract Storage{
     constructor(){
         admin=msg.sender;
         user memory u;
-        u.name="eeshan";
-        u.email="dsa@123";
-        store[msg.sender]=u;
+        
     }    
-    event userAdded(
-        user
-    );  
+    event userAdded( user u );  
+
     function addUser(user memory details) public{
         store[msg.sender]=details;
         // emit userAdded(details);
     }
+    
     function getUser(address add) public  returns (string memory,string memory){
         emit userAdded(store[msg.sender]);
         user memory u=store[add];
