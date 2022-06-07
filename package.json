@@ -11,14 +11,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@truffle/contract": "^4.5.13",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.5",
+<<<<<<< HEAD
     "nodemon": "^2.0.16",
     "uuid": "^8.3.2",
     "yarn": "^1.22.18"
+=======
+    "truffle": "^5.5.17",
+    "web3": "^1.7.3"
+>>>>>>> b4a5afaa6383cbaef3a618873bc8078002e30e45
   }
 }

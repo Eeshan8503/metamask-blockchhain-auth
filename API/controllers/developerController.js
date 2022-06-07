@@ -1,11 +1,11 @@
-const express=require("express");
+// const express=require("express");
 const Developer=require("./../models/developerModel")
 const {catchAsync}=require("./../Util/catchAsync");
 
 exports.isValid=catchAsync(async(req,res)=>{
-    const user=await Developer.find({authkey:req.params.key});
-    if(user){
-        return true;
+    const developer=await Developer.find({authkey:req.params.key});
+    if(developer){
+        return true; 
     }
     else{
         return false;
