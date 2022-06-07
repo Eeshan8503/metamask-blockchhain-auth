@@ -7,15 +7,15 @@ contract("Storage",async function(accounts){
         console.log(address);
 
         const user={
-            name:"Eeshan",
-            email:"eeshanmattey@gmail.com"
+            name:"gajodahssaar",
+            email:"dsadsa@yahoo.com"
         }
         // console.log(user)
         await storage.addUser(
             user,
-            {from:accounts[1]}
+            {from:accounts[3]}
         );
-        const u=await storage.getUser.call(accounts[2])
+        const u=await storage.getUser.call(accounts[3])
         console.log(u[0])
         console.log(u[1])
     })
