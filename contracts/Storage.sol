@@ -9,14 +9,13 @@ contract Storage{
     mapping (address=>user) public store;
     constructor(){
         admin=msg.sender;
-        user memory u;
         
     }    
-    event userAdded( user u );  
+    event userAdded( user);  
 
     function addUser(user memory details) public{
         store[msg.sender]=details;
-        // emit userAdded(details);
+        emit userAdded(details);
     }
     
     function getUser(address add) public  returns (string memory,string memory){
