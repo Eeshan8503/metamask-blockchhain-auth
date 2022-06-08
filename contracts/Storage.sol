@@ -5,6 +5,7 @@ contract Storage{
     struct user{
         string name;
         string email;
+        bool exists;
     }
     mapping (address=>user) public store;
     constructor(){
@@ -14,7 +15,9 @@ contract Storage{
     event userAdded( user);  
 
     function addUser(user memory details) public{
+        require(store[msg.sender].exists==false,"User already exists");
         store[msg.sender]=details;
+        store[msg.sender].exists=true;
         emit userAdded(details);
     }
     
@@ -24,5 +27,3 @@ contract Storage{
         return(u.name,u.email);
     }
 }
-
-

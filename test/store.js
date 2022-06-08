@@ -11,12 +11,19 @@ contract("Storage",async function(accounts){
             email:"dsadsa@yahoo.com"
         }
         // console.log(user)
-        await storage.addUser(
-            user,
-            {from:accounts[3]}
-        );
+        await storage.addUser(user,{from:accounts[3]});
         const u=await storage.getUser.call(accounts[3])
         console.log(u[0])
         console.log(u[1])
+        console.log("trying again");
+        try{
+
+            await storage.addUser(user,{from:accounts[3]});
+        }
+        catch(err){
+            console.log("user already exists")
+        }
+       
+
     })
 })
