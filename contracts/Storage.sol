@@ -9,8 +9,7 @@ contract Storage{
     }
     mapping (address=>user) public store;
     constructor(){
-        admin=msg.sender;
-        
+        admin=msg.sender;        
     }    
     event userAdded( user);  
 
