@@ -11,7 +11,7 @@ const Index = () => {
           "email":`${event.target.email.value}`,
         }
         try{
-          const res=await api.post('/user/newUser',user);
+          const res=await api.post('/userRoutes/newUser',user);
           if(res){
             alert("badiya");
           }
