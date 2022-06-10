@@ -1,9 +1,10 @@
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 import api from '../utils/api';
+import { ConnectWallet } from "../components/connectWallet";
 const Index = () => {
   // const router = useRouter();
-
+    
     const handleSubmit=async(event:any)=>{
         event.preventDefault();
         const user={
@@ -123,6 +124,7 @@ const Index = () => {
               Register
             </button>
           </form>
+          <ConnectWallet/>
         </div>
         <br />
         {/* <h2 className="text-lg font-semibold">Sign in as a Developer:</h2> */}
