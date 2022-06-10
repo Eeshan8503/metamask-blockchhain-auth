@@ -3,10 +3,10 @@ const userController=require("./../controllers/userController");
 const router=express.Router();
 
 router
-    .route('/user/:key/:account')
+    .route('/:user')
     .get(userController.getUser)
 
 router
-    .route('/user/newUser')
-    .get(userController.addUser)
+    .route('/newUser')
+    .post(userController.newUser)
 module.exports = router;

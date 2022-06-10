@@ -1,44 +1,77 @@
 const  Web3  = require("web3");
-const address = '0xF0b11AB06788fB611476E31Bb2287754f0231fDA';
-const privateKey = '5415fc212e1f08712260fab2d2a140a0cbe3b8200aedad97b502f98379b9fbc3';
+const address = '0x259920878100C6a5F5A6a8c38480E5fb3d620150';
+const privateKey = '57b44ee294e1cb7abf5cda59307f802d6b9f0a3b4445d957348b6b51f0236245';
 const contract=require("./../../build/contracts/Storage.json")
 const {catchAsync}=require("./../Util/catchAsync");
 const {isValid}=require("./developerController");
-var web3=null;
-var networkId=null
-var myContract=null
-  
-const init1=async()=>{
-  web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
-  networkId = await web3.eth.net.getId();
-  myContract = new web3.eth.Contract(
+  const user={
+    name:"gajodahssaar",
+    email:"fds@12"
+  }
+const init1=catchAsync(async()=>{
+ const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+  const networkId = await web3.eth.net.getId();
+  const myContract = new web3.eth.Contract(
         contract.abi,
         contract.networks[networkId].address
       );
-    web3.eth.accounts.wallet.add(privateKey);  
-}
-init1()
+    web3.eth.accounts.wallet.add(privateKey);
+    const gasPrice = await web3.eth.getGasPrice();
+    const gasEstimate = await myContract.methods.addUser(user).estimateGas({ from: address });
+
+    const temp=await myContract.methods.addUser(user).send({from:address,gasPrice: gasPrice, gas: gasEstimate});
+    const u=await myContract.methods.getUser(address).call();
+    console.log(u)
+})
+
 exports.getUser=catchAsync(async(req,res)=>{
-  if(isValid){
-    const u=await myContract.methods.getUser(req.params.user).call();
+  console.log(req.params.user)
+  //////////////////////////////////////////////////////////////////////////
+const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+const networkId = await web3.eth.net.getId();
+const myContract = new web3.eth.Contract(
+      contract.abi,
+      contract.networks[networkId].address
+    );
+  web3.eth.accounts.wallet.add(privateKey);
+  const gasPrice = await web3.eth.getGasPrice();
+  const gasEstimate = await myContract.methods.getUser(req.params.user).estimateGas({ from: address });
+//////////////////////////////////////////////////////////////////////////
+  // if(isValid){
+    const u=await myContract.methods.getUser(req.params.user).call({from:address,gasPrice: gasPrice, gas: gasEstimate});
     if(u)
     res.status(201).json(u);
     else{
       res.status(500).json({message:"No user exists"})
     }
-  }
-  else{
-    res.status(500).json({message:"Invalid Auth key"})
-  }
+  // }
+  // else{
+  //   res.status(500).json({message:"Invalid Auth key"})
+  // }
 })
-exports.addUser=catchAsync(async(req,res)=>{
+exports.newUser=catchAsync(async(req,res)=>{
   const user={
     name:req.body.name,
     email:req.body.email
   }
-  const temp=await myContract.methods.addUser(user).send();
+//////////////////////////////////////////////////////////////////////////
+const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+  const networkId = await web3.eth.net.getId();
+  const myContract = new web3.eth.Contract(
+        contract.abi,
+        contract.networks[networkId].address
+      );
+    web3.eth.accounts.wallet.add(privateKey);
+    const gasPrice = await web3.eth.getGasPrice();
+    const gasEstimate = await myContract.methods.addUser(user).estimateGas({ from: address });
+//////////////////////////////////////////////////////////////////////////
+
+
+  console.log(req.body)
+  
+  const temp=await myContract.methods.addUser(user).send({from:address,gasPrice: gasPrice, gas: gasEstimate});
   if(temp){
-    res.status(201).json(u);
+    res.status(201).json(temp);
   }
   else{
     res.status(500).json({message:"Error adding user"});
