@@ -4,7 +4,7 @@ import { Main } from '@/templates/Main';
 import api from '@/utils/api';
 const CryptoJS =require("crypto-js");
 
-//import { ConnectWallet } from '../components/connectWallet';
+import { ConnectWallet } from '../components/connectWallet';
 const Index = () => {
   const [authKey,setAuthKey] = useState('');
 
@@ -153,7 +153,7 @@ const Index = () => {
               Register
             </button>
           </form>
-          {/* <ConnectWallet/> */}
+          <ConnectWallet/>
         </div>
         <br />
         {/* <h2 className="text-lg font-semibold">Sign in as a Developer:</h2> */}
