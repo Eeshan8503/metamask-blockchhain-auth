@@ -18,7 +18,7 @@ exports.register=catchAsync(async (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
-        authKey: CryptoJS.AES.encrypt(uuidv4(), process.env.SECRET_KEY).toString(),
+        authKey: uuidv4()
     });
     try{
         const user = await newDeveloper.save();

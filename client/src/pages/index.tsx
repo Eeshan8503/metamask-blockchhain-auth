@@ -1,26 +1,55 @@
 import { Meta } from '@/layouts/Meta';
+import React, { useState } from 'react';
 import { Main } from '@/templates/Main';
-import api from '../utils/api';
-import { ConnectWallet } from "../components/connectWallet";
+import api from '@/utils/api';
+const CryptoJS =require("crypto-js");
+
+//import { ConnectWallet } from '../components/connectWallet';
 const Index = () => {
+  const [authKey,setAuthKey] = useState('');
+
   // const router = useRouter();
     
+    // const handleSubmit=async(event:any)=>{
+    //     event.preventDefault();
+    //     const user={
+    //       "name":`${event.target.name.value}`,
+    //       "email":`${event.target.email.value}`,
+    //     }
+    //     try{
+    //       const res=await api.post('/userRoutes/newUser',user);
+    //       if(res){
+    //         alert("badiya");
+    //       }
+    //     }
+    //     catch(err){
+    //       console.log(err);
+    //     }
+    // }
+
     const handleSubmit=async(event:any)=>{
         event.preventDefault();
-        const user={
-          "name":`${event.target.name.value}`,
+        const developer={
+          "username":`${event.target.name.value}`,
           "email":`${event.target.email.value}`,
+          "password":`${event.target.password.value}`
         }
         try{
-          const res=await api.post('/userRoutes/newUser',user);
+          const res=await api.post('/developerRoutes/register',developer);
           if(res){
-            alert("badiya");
+            console.log(res.data.authKey);
+            setAuthKey(res.data.authKey);
           }
         }
         catch(err){
           console.log(err);
         }
     }
+
+
+
+
+
 
   return (
     <Main
@@ -124,13 +153,13 @@ const Index = () => {
               Register
             </button>
           </form>
-          <ConnectWallet/>
+          {/* <ConnectWallet/> */}
         </div>
         <br />
         {/* <h2 className="text-lg font-semibold">Sign in as a Developer:</h2> */}
         <br />
         <div className="m-5 max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:p-8">
-          <form className="space-y-6" action="#">
+          <form className="space-y-6" action="#" onSubmit={handleSubmit}>
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
               Sign in to our platform As a Developer!
             </h5>
@@ -143,9 +172,9 @@ const Index = () => {
                 Your name{' '}
               </label>
               <input
-                type="email"
-                name="email"
-                id="email"
+                type="text"
+                name="name"
+                id="name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder:text-gray-400"
                 placeholder="Your full name"
                 required
@@ -209,6 +238,25 @@ const Index = () => {
             >
               Click here to get your Auth Key!
             </button>
+            {authKey && (
+              <div>
+              <label
+                htmlFor="email"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                {' '}
+                The following is your AuthKey, Please copy it and keep it safe, you will not be seeing this again!{' '}
+              </label>
+              <input
+                type="text"
+                name="auth"
+                id="auth"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder:text-gray-400"
+                value={authKey}
+                readOnly
+              ></input>
+            </div>
+            )}
           </form>
         </div>
       </div>
@@ -217,3 +265,4 @@ const Index = () => {
 };
 
 export default Index;
+

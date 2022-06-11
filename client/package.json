@@ -11,14 +11,12 @@
     "clean": "rimraf .next out",
     "lint": "next lint",
     "check-types": "tsc --noEmit --pretty",
-    "test": "jest --watch",
-    "prepare": "husky install"
+    "test": "jest --watch"
   },
   "dependencies": {
     "@thirdweb-dev/react": "^2.4.1",
     "@thirdweb-dev/sdk": "^2.3.11",
     "axios": "^0.27.2",
-    "ethers": "^5.6.8",
     "next": "^12.1.6",
     "next-seo": "^5.4.0",
     "react": "^18.1.0",
@@ -55,7 +53,6 @@
     "eslint-plugin-tailwindcss": "^3.5.0",
     "eslint-plugin-testing-library": "^5.5.1",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^7.0.4",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "lint-staged": "^12.5.0",

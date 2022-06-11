@@ -51,8 +51,8 @@ const Main = (props: IMainProps) => (
       <div className="content py-5 text-xl">{props.children}</div>
 
       <div className="border-t border-gray-300 py-8 text-center text-sm">
-        © Copyright {new Date().getFullYear()} MetamaskAuth. <br/> Arnish Bhardwaj and{' '}
-         Eeshan Mattey<br/> - All Rights Reserved
+        © Copyright {new Date().getFullYear()} MetamaskAuth. - Arnish Bhardwaj,{' '}
+        <br /> Eeshan Mattey - All Rights Reserved
       </div>
     </div>
   </div>

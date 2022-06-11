@@ -2,7 +2,7 @@ import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 const About = () => (
-  <Main meta={<Meta title="Auth-About" description="Auth-About" />}>
+  <Main meta={<Meta title="Lorem ipsum" description="Lorem ipsum" />}>
     <p>
       You can use MetaMask to interact with blockchain applications such as
       dApps and DeFi apps. MetaMask also functions as an authentication module,
