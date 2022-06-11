@@ -4,8 +4,8 @@ const userController=require("./../controllers/userController");
 const router=express.Router();
 
 router
-    .route('/:key/:user')
-    .get(isValid,userController.getUser)
+    // .route()
+    .get('/:key/:user',isValid,userController.getUser)
 
 router
     .route('/newUser')
