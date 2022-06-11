@@ -5,13 +5,13 @@ const {catchAsync}=require("./../Util/catchAsync");
 const CryptoJS =require("crypto-js");
 const { v4: uuidv4 } = require('uuid');
 exports.isValid=catchAsync(async(req,res,next)=>{
-    // console.log(req.params)
-    // console.log("in isvalid function")
+    console.log(req.params)
+    console.log("in isvalid function")
     const d=await developer.find({"authKey":req.params.key});
-    // console.log(d)
+    console.log(d)
     // const doc=await d;
     if(d.length>0){
-        // console.log("here")
+        console.log("here")
         next();
     }
     else{
