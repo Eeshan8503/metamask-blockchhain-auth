@@ -7,25 +7,31 @@ const CryptoJS =require("crypto-js");
 import { ConnectWallet } from '../components/connectWallet';
 const Index = () => {
   const [authKey,setAuthKey] = useState('');
-
+  const [userAdd,setuserAdd] = useState('');
   // const router = useRouter();
     
-    // const handleSubmit=async(event:any)=>{
-    //     event.preventDefault();
-    //     const user={
-    //       "name":`${event.target.name.value}`,
-    //       "email":`${event.target.email.value}`,
-    //     }
-    //     try{
-    //       const res=await api.post('/userRoutes/newUser',user);
-    //       if(res){
-    //         alert("badiya");
-    //       }
-    //     }
-    //     catch(err){
-    //       console.log(err);
-    //     }
-    // }
+    const userSubmit=async(event:any)=>{
+      if(!userAdd){
+        alert('please connect')
+        return;
+      }
+      alert("das")
+        event.preventDefault();
+        const user={
+          "name":`${event.target.name.value}`,
+          "email":`${event.target.email.value}`,
+          "address":userAdd,
+        }
+        try{
+          const res=await api.post('/userRoutes/newUser',user);
+          if(res){
+            alert("badiya");
+          }
+        }
+        catch(err){
+          console.log(err);
+        }
+    }
 
     const handleSubmit=async(event:any)=>{
         event.preventDefault();
@@ -72,8 +78,8 @@ const Index = () => {
       </h2>
       <br />
       <div className=" flex items-start">
-        <div className="m-5 max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:p-8">
-          <form className="space-y-6" action="#" onSubmit={handleSubmit}>
+        <div className="m-5 max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:p-8" style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
+          <form className="space-y-6" action="#" onSubmit={userSubmit}>
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
               Sign in to our platform As a User!
             </h5>
@@ -153,7 +159,8 @@ const Index = () => {
               Register
             </button>
           </form>
-          <ConnectWallet/>
+          <ConnectWallet setter={setuserAdd}/>
+          <p>{userAdd}</p>
         </div>
         <br />
         {/* <h2 className="text-lg font-semibold">Sign in as a Developer:</h2> */}

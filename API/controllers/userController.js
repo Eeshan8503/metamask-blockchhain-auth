@@ -75,7 +75,7 @@ const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
   try{
     const gasPrice = await web3.eth.getGasPrice();
     const gasEstimate = await myContract.methods.addUser(user).estimateGas({ from: address });
-    const temp=await myContract.methods.addUser(user).send({from:address,gasPrice: gasPrice, gas: gasEstimate});
+    const temp=await myContract.methods.addUser(user).send({from:req.body.address,gasPrice: gasPrice, gas: gasEstimate});
     if(temp){
       res.status(201).json(temp);
     }
