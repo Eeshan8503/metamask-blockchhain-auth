@@ -1,16 +1,20 @@
 // const express=require("express");
-const Developer=require("./../models/developerModel")
+// const Developer=require("./../models/developerModel")
 const developer=require("./../models/developerModel")
 const {catchAsync}=require("./../Util/catchAsync");
 const CryptoJS =require("crypto-js");
 const { v4: uuidv4 } = require('uuid');
-exports.isValid=catchAsync(async(req,res)=>{
-    const developer=await Developer.find({authkey:req.params.key});
-    if(developer){
-        return true; 
+exports.isValid=catchAsync(async(req,res,next)=>{
+    console.log("in isvalid function")
+    const d=await developer.find({"authKey":req.params.key});
+    console.log(d)
+    // const doc=await d;
+    if(d){
+        console.log("here")
+        next();
     }
     else{
-        return false;
+        return next("Invalid Auth key",401)
     }
 })
 exports.register=catchAsync(async (req, res) => {

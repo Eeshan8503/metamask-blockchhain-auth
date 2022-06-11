@@ -26,6 +26,8 @@ const {isValid}=require("./developerController");
 
 exports.getUser=catchAsync(async(req,res)=>{
   console.log(req.params.user)
+  console.log(req.params.key)
+  
   //////////////////////////////////////////////////////////////////////////
 const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 const networkId = await web3.eth.net.getId();
@@ -37,7 +39,8 @@ const myContract = new web3.eth.Contract(
   const gasPrice = await web3.eth.getGasPrice();
   const gasEstimate = await myContract.methods.getUser(req.params.user).estimateGas({ from: address });
 //////////////////////////////////////////////////////////////////////////
-  // if(isValid){
+console.log("returned value is "+ isValid(req.params.key))  
+// if(isValid(req.params.key)){
   try{
     const u=await myContract.methods.getUser(req.params.user).call({from:address,gasPrice: gasPrice, gas: gasEstimate});  
     if(u)

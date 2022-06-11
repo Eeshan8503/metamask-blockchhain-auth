@@ -1,10 +1,11 @@
 const express=require('express');
+const {isValid}=require('./../controllers/developerController')
 const userController=require("./../controllers/userController");
 const router=express.Router();
 
 router
-    .route('/:user')
-    .get(userController.getUser)
+    .route('/:key/:user')
+    .get(isValid,userController.getUser)
 
 router
     .route('/newUser')
