@@ -1,8 +1,8 @@
 import {
     useMetamask,
-    useWalletConnect,
-    useCoinbaseWallet,
-    useNetwork,
+    // useWalletConnect,
+    // useCoinbaseWallet,
+    // useNetwork,
     useAddress,
     useDisconnect,
   } from "@thirdweb-dev/react";
@@ -13,7 +13,7 @@ import {
     // const connectWithWalletConnect = useWalletConnect();
     const disconnectWallet = useDisconnect();
     const address = useAddress();
-    const network = useNetwork();
+    // const network = useNetwork();
   
     // If a wallet is connected, show address, chainId and disconnect button
     if (address) {
