@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URL, {
 let port=process.env.PORT || 8800
 app.use(express.json());
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: true,
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200
   };
@@ -23,6 +23,9 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use("/api/developerRoutes", developerRoute);
 app.use("/api/userRoutes", userRoute);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+})
 
 
 app.listen(port, () => {
