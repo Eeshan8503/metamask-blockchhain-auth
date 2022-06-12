@@ -24,7 +24,13 @@ const Index = () => {
         }
         try{
           const res=await api.post('/userRoutes/newUser',user);
-          // console.log(res)
+          if(res){
+            alert("user created successfully");
+          }
+          else{
+            alert("user already exists");
+            // Alertify(0);
+          }
         }
         catch(err){
           alert("error in creating user");
@@ -43,7 +49,7 @@ const Index = () => {
         try{
           const res=await api.post('/developerRoutes/register',developer);
           if(res){
-            // console.log(res.data.authKey);
+            console.log(res.data.authKey);
             setAuthKey(res.data.authKey);
           }
         }
