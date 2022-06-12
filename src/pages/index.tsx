@@ -2,7 +2,7 @@ import { Meta } from '@/layouts/Meta';
 import React, { useState } from 'react';
 import { Main } from '@/templates/Main';
 import api from '@/utils/api';
-import Alertify from '@/components/Alert';
+// import Alertify from '@/components/Alert';
 // const CryptoJS =require("crypto-js");
 
 import { ConnectWallet } from '../components/connectWallet';
