@@ -2,6 +2,7 @@ import { Meta } from '@/layouts/Meta';
 import React, { useState } from 'react';
 import { Main } from '@/templates/Main';
 import api from '@/utils/api';
+import Alertify from '@/components/Alert';
 // const CryptoJS =require("crypto-js");
 
 import { ConnectWallet } from '../components/connectWallet';
@@ -12,10 +13,9 @@ const Index = () => {
     
     const userSubmit=async(event:any)=>{
       if(!userAdd){
-        alert('please connect')
+        alert('please connect to metamask first')
         return;
       }
-      alert("das")
         event.preventDefault();
         const user={
           "name":`${event.target.name.value}`,
@@ -24,12 +24,12 @@ const Index = () => {
         }
         try{
           const res=await api.post('/userRoutes/newUser',user);
-          if(res){
-            alert("badiya");
-          }
+          console.log(res)
         }
         catch(err){
-          console.log(err);
+          alert("error in creating user");
+          // <Alertify val={0} />;
+          // console.log("User exists");
         }
     }
 
@@ -66,6 +66,9 @@ const Index = () => {
         />
       }
     >
+      {/* <div style={{display:'flex',position:'absolute', top:'0'}}>
+        <Alertify val={0}/>
+      </div> */}
       <h1 className="text-2xl font-bold">
         Blockchain authentication using metamask
       </h1>
