@@ -24,7 +24,7 @@ const Index = () => {
         }
         try{
           const res=await api.post('/userRoutes/newUser',user);
-          console.log(res)
+          // console.log(res)
         }
         catch(err){
           alert("error in creating user");
@@ -43,7 +43,7 @@ const Index = () => {
         try{
           const res=await api.post('/developerRoutes/register',developer);
           if(res){
-            console.log(res.data.authKey);
+            // console.log(res.data.authKey);
             setAuthKey(res.data.authKey);
           }
         }
