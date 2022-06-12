@@ -1,6 +1,6 @@
 const  Web3  = require("web3");
-const address = '0x259920878100C6a5F5A6a8c38480E5fb3d620150';
-const privateKey = '57b44ee294e1cb7abf5cda59307f802d6b9f0a3b4445d957348b6b51f0236245';
+const address = '0xDC86b38274812B1D2dd21751E0Bcb04A1f760f6e';
+const privateKey = '90226b50dcfe829d69b2526f11c794e7a60390537f7ea765e40c2effd09ed11a';
 const contract=require("./../../build/contracts/Storage.json")
 const {catchAsync}=require("./../Util/catchAsync");
 const {isValid}=require("./developerController");
@@ -29,7 +29,8 @@ exports.getUser=catchAsync(async(req,res)=>{
   // console.log(req.params.key)
   
   //////////////////////////////////////////////////////////////////////////
-const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+// const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+const web3=new Web3("https://ropsten.infura.io/v3/ca1913f3a01e4c9fa2d3ba9578018197");
 const networkId = await web3.eth.net.getId();
 const myContract = new web3.eth.Contract(
       contract.abi,
@@ -63,7 +64,7 @@ exports.newUser=catchAsync(async(req,res)=>{
     email:req.body.email
   }
 //////////////////////////////////////////////////////////////////////////
-const web3=new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+const web3=new Web3('https://ropsten.infura.io/v3/ca1913f3a01e4c9fa2d3ba9578018197');
   const networkId = await web3.eth.net.getId();
   const myContract = new web3.eth.Contract(
         contract.abi,
