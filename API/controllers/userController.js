@@ -89,7 +89,7 @@ const web3=new Web3('https://ropsten.infura.io/v3/ca1913f3a01e4c9fa2d3ba95780181
 }
   catch(err){
     // console.log("hehrere")
-    res.status(500).json({message:"user already exists"})
+    res.status(500).json({message:"please try again"})
   }
   
 })
